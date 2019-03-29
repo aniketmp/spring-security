@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.pebstone.Employee;
+
 @Controller
 public class HelloWorldController {
     @GetMapping({ "/", "/hello" })
@@ -16,7 +18,8 @@ public class HelloWorldController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {
-            userName = ((UserDetails) principal).getUsername();
+            UserDetails e=(UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            userName=e.getUsername();
         } else {
             userName = principal.toString();
         }

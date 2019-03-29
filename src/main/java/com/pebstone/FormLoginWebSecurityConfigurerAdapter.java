@@ -1,9 +1,11 @@
 package com.pebstone;
 
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.stereotype.Component;
 
+@Order(100)
 @Component
 public class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
@@ -16,9 +18,7 @@ public class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurer
             .formLogin()
                 .loginPage("/login").permitAll()
                 .and()
-                .logout().permitAll()
-                .and()
-            .httpBasic();                                                
+                .logout().permitAll();                                                
   
     }
 }

@@ -16,10 +16,14 @@ public class BankController {
 	@Autowired
 	private CustomerService customerService;
 	
-	@RequestMapping("/api")
-	public String healthCheck() {
+	@RequestMapping("/basic")
+	public String healthCheckBasic() {
 		return "OK";
 	}
+	@RequestMapping("/digest")
+    public String healthCheckDigest() {
+        return "OK";
+    }
 	
 	@ResponseBody
 	@RequestMapping("/api/deposit")	

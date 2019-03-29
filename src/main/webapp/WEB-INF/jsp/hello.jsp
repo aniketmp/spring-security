@@ -15,6 +15,6 @@
 		name="${_csrf.parameterName}"
 		value="${_csrf.token}"/>
 	</form>
-	 <h2 class="hello-title">Hello ${name}!</h2>
+	 <h2 class="hello-title">Hello ${name}</h2>
 </body>
 </html>

@@ -1,12 +1,12 @@
 package com.pebstone;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint;
+import org.springframework.security.web.authentication.www.DigestAuthenticationFilter;
 
 
 @EnableWebSecurity
@@ -19,5 +19,20 @@ public class SecurityConfig {
         manager.createUser(User.withUsername("admin").password("admin").roles("ADMIN").build());
         manager.createUser(User.withUsername("api").password("api").roles("API").build());
         return manager;
-    }    
+    }  
+    @Bean
+    DigestAuthenticationEntryPoint digestEntryPoint() {
+        DigestAuthenticationEntryPoint bauth = new DigestAuthenticationEntryPoint();
+        bauth.setRealmName("Digest WF Realm");
+        bauth.setKey("MySecureKey");
+        return bauth;
+    }
+    @Bean
+    DigestAuthenticationFilter digestAuthenticationFilter() throws Exception {
+        DigestAuthenticationFilter digestAuthenticationFilter = new DigestAuthenticationFilter();
+        digestAuthenticationFilter.setUserDetailsService(userDetailsService());
+        digestAuthenticationFilter.setAuthenticationEntryPoint(digestEntryPoint());        
+        return digestAuthenticationFilter;
+    }
+    
 }

@@ -2,6 +2,7 @@ package com.pebstone;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint;
 import org.springframework.web.filter.CommonsRequestLoggingFilter;
 
 @Configuration
@@ -16,6 +17,6 @@ public class AppConfig {
         loggingFilter.setMaxPayloadLength(100000);
         loggingFilter.setIncludeHeaders(true);        
         return loggingFilter;
-    }
+    }        
 
 }
