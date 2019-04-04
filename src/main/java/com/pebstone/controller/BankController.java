@@ -24,6 +24,10 @@ public class BankController {
     public String healthCheckDigest() {
         return "OK";
     }
+	@RequestMapping("/certificate")
+    public String healthCheckCertificate() {
+        return "OK";
+    }
 	
 	@ResponseBody
 	@RequestMapping("/api/deposit")	

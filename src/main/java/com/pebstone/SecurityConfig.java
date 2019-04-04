@@ -18,6 +18,7 @@ public class SecurityConfig {
         manager.createUser(User.withUsername("aniket").password("aniket").roles("USER").build());
         manager.createUser(User.withUsername("admin").password("admin").roles("ADMIN").build());
         manager.createUser(User.withUsername("api").password("api").roles("API").build());
+        manager.createUser(User.withUsername("apotek.no").password("").roles("PHARMACY").build());
         return manager;
     }  
     @Bean
