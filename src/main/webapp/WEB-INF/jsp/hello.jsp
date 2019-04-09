@@ -16,5 +16,9 @@
 		value="${_csrf.token}"/>
 	</form>
 	 <h2 class="hello-title">Hello ${name}</h2>
+	 <h2>Your user details is as follows:</h2>
+	 <h2>Password  ${password}</h2>
+	 <h2>Bank Name ${companyName}</h2>
+	 <h2>Roles ${roles}</h2>	 
 </body>
 </html>

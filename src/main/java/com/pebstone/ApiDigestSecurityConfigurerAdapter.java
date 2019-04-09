@@ -8,8 +8,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.DigestAuthenticationFilter;
 import org.springframework.security.web.context.NullSecurityContextRepository;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 @Order(3)
 public class ApiDigestSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
     @Autowired
