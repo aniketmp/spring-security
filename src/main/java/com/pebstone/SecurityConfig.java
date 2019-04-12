@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.DigestAuthenticationFilter;
@@ -11,6 +13,8 @@ import org.springframework.security.web.authentication.www.DigestAuthenticationF
 
 @Configuration
 public class SecurityConfig {
+    
+    
     
     @Bean
     public UserDetailsService userDetailsService(){
@@ -35,5 +39,12 @@ public class SecurityConfig {
         digestAuthenticationFilter.setAuthenticationEntryPoint(digestEntryPoint());        
         return digestAuthenticationFilter;
     }    
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder(){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder;
+    }
+    
+    
     
 }

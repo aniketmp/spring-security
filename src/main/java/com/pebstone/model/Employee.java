@@ -12,6 +12,7 @@ public class Employee {
     private String password;
     private String roles;
     private String bankName;
+    private String token;
     
     
     public Employee() {       
@@ -55,6 +56,15 @@ public class Employee {
     public void setBankName(String bankName) {
         this.bankName = bankName;
     }
+    
+    public String getToken() {
+        return "12121212";
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     @Override
     public String toString() {
         return "Employee [userName=" + userName + ", password=" + password + ", roles=" + roles + ", bankName="

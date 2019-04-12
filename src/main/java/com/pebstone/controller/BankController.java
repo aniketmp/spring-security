@@ -1,5 +1,7 @@
 package com.pebstone.controller;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +17,12 @@ public class BankController {
 
 	@Autowired
 	private CustomerService customerService;
+	
+	@PostConstruct
+	public void initialize()
+	{
+	    customerService.add(1000);                ;
+	}
 	
 	@RequestMapping("/basic")
 	public String healthCheckBasic() {
