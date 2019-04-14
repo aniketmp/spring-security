@@ -25,6 +25,8 @@ public class AuthEvent  implements ApplicationListener<ApplicationEvent> {
 	        String userName=failEvent.getAuthentication().getName();
 	        System.out.println("Failure UserName:"+userName);	
 	        Employee emp=empRepo.findByUserName(userName);
+	        if(emp==null)
+	        	return;
 	        if(emp.getLoginAttempt()==2)
 	        {
 	        	emp.setActive(false);
@@ -44,6 +46,8 @@ public class AuthEvent  implements ApplicationListener<ApplicationEvent> {
 			Authentication auth=successEvent.getAuthentication();	        	        
 	        System.out.println("Success Principle:"+auth.getPrincipal());	        
 	        Employee emp=empRepo.findByUserName(auth.getName());
+	        if(emp==null)
+	        	return;
 	        emp.setLoginAttempt(0);
 	        
 		}

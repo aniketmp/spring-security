@@ -3,8 +3,11 @@ package com.pebstone.controller;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,17 +28,22 @@ public class BankController {
 	}
 	
 	@RequestMapping("/basic")
-	public String healthCheckBasic() {
-		return "OK";
+	public Object healthCheckBasic() {
+		return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
 	@RequestMapping("/digest")
-    public String healthCheckDigest() {
-        return "OK";
+    public Object healthCheckDigest() {
+		return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 	@RequestMapping("/certificate")
-    public String healthCheckCertificate() {
-        return "OK";
+    public Object healthCheckCertificate() {
+		return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
+	
+	 @GetMapping({ "/token" })
+	 public Object secure(Model model) {
+		 return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
 	
 	@ResponseBody
 	@RequestMapping("/api/deposit")	

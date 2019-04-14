@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.context.NullSecurityContextRepository;
 import org.springframework.stereotype.Component;
 
-@Order(1)
+@Order(4)
 @Component
 public class X509CertificateSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
  

@@ -64,8 +64,5 @@ public class HelloWorldController {
         return "login";
     }
     
-    @GetMapping({ "/token" })
-    public String secure(Model model) {
-    	  return hello(model, null);
-    }
+   
 }
