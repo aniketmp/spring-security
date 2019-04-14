@@ -43,7 +43,7 @@ public class EmployeeDetails implements UserDetails{
     @Override
     public boolean isAccountNonLocked() {
         // TODO Auto-generated method stub
-        return true;
+        return employee.isActive();
     }
 
     @Override

@@ -13,9 +13,27 @@ public class Employee {
     private String roles;
     private String bankName;
     private String token;
+    private int loginAttempt;
+    private boolean isActive=true;
     
     
-    public Employee() {       
+    public int getLoginAttempt() {
+		return loginAttempt;
+	}
+
+	public void setLoginAttempt(int loginAttempt) {
+		this.loginAttempt = loginAttempt;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public Employee() {       
     }
     
     public Employee(int id, String userName, String password, String roles, String bankName) {        

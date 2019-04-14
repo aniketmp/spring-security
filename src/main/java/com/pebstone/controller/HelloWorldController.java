@@ -64,19 +64,8 @@ public class HelloWorldController {
         return "login";
     }
     
-    @GetMapping({ "/secure" })
+    @GetMapping({ "/token" })
     public String secure(Model model) {
-        String userName = "";
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails) principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-
-        model.addAttribute("name", userName);
-        
-        return "secure";
+    	  return hello(model, null);
     }
 }
