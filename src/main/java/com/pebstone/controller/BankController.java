@@ -41,12 +41,12 @@ public class BankController {
     }
 	
 	 @GetMapping({ "/token" })
-	 public Object healthCheckToken(Model model) {
+	 public Object healthCheckToken() {
 		 return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
 	
 	 @GetMapping({ "/oauth2" })
-     public Object healthCheckOauth2(Model model) {
+     public Object healthCheckOauth2() {
          return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 	@ResponseBody

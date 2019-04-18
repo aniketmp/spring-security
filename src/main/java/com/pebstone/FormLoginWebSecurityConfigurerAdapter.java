@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 import com.pebstone.service.EmployeeDetailsService;
 
-@Order(100)
-@Component
+//@Order(100)
+//@Component
 public class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
     
     @Autowired
