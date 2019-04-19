@@ -60,9 +60,14 @@ public class HelloWorldController {
     }
 
     @GetMapping({ "/login" })
-    public String login(Model model) {
+    public String login() {
         return "login";
     }
+    
+    @GetMapping({ "/auth_code" })
+    public String getOauthCodeForm() {
+        return "secure";
+   }
     
    
 }
