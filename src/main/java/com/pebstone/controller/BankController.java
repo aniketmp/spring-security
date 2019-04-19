@@ -49,6 +49,10 @@ public class BankController {
      public Object healthCheckOauth2() {
          return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
+	 @GetMapping({ "/redirect" })
+     public Object oauth2Redirect(@RequestParam String code,@RequestParam String state) {
+         return "code:"+code+"  state:"+state;
+    }
 	@ResponseBody
 	@RequestMapping("/api/deposit")	
     public int deposite(@RequestParam(value="balance") int balance) {

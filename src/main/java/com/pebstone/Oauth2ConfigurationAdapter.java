@@ -16,7 +16,9 @@ public class Oauth2ConfigurationAdapter extends ResourceServerConfigurerAdapter 
         http
         .authorizeRequests()        
         .antMatchers(HttpMethod.GET,"/oauth2").access("#oauth2.hasScope('mobileclient')")        
-        .anyRequest().authenticated();
-    }
-        
+        .antMatchers("/redirect").permitAll()
+        .anyRequest().authenticated()
+        .and()
+        .csrf().disable();
+        }           
 }
