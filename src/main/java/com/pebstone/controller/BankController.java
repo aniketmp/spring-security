@@ -45,11 +45,15 @@ public class BankController {
 		 return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
 	
-	 @GetMapping({ "/oauth2" })
+	 @GetMapping({ "/oauth2/client_credentials" })
+     public Object healthCheckOauth2ClientCredentials() {
+         return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+	 @GetMapping({ "/oauth2/password" })
      public Object healthCheckOauth2() {
          return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
-	 @GetMapping({ "/redirect" })
+	 @GetMapping({ "/oauth2/redirect" })
      public Object oauth2Redirect(@RequestParam String code) {
          return "code:"+code;
     }
