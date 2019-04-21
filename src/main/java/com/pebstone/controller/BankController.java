@@ -58,6 +58,11 @@ public class BankController {
          return "code:"+code;
     }
 	 
+	@GetMapping({ "/jwt" })
+     public Object healthCheckJWT() {
+         return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    }
+	 
 	@ResponseBody
 	@RequestMapping("/api/deposit")	
     public int deposite(@RequestParam(value="balance") int balance) {
