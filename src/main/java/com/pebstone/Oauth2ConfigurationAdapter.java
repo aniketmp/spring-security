@@ -15,8 +15,7 @@ public class Oauth2ConfigurationAdapter extends ResourceServerConfigurerAdapter 
         http
         .authorizeRequests()        
         .antMatchers(HttpMethod.GET,"/oauth2/client_credentials").access("#oauth2.hasScope('mobileclient')")
-        .antMatchers(HttpMethod.GET,"/oauth2/password").hasAnyRole("USER")
-        .antMatchers("/redirect","/auth_code").permitAll()
+        .antMatchers(HttpMethod.GET,"/oauth2/password").hasAnyRole("USER")        
         .anyRequest().authenticated()
         .and()
         .csrf().disable();

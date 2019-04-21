@@ -22,7 +22,7 @@
 
                  <input type="text" name="client_id" value="springsecurity" />
 
-                 <input type="text" name="redirect_uri" value="http://localhost:8080/redirect" />
+                 <input type="text" name="redirect_uri" value="http://localhost:8080/oauth2/redirect" />
 
                  <input type="SUBMIT" value="Get Employee info" />
 

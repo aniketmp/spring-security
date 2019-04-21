@@ -7,6 +7,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -70,7 +71,7 @@ public class JwtAuthFilter extends BasicAuthenticationFilter {
 
 			Claims claims = Jwts.parser()
 
-					.setSigningKey(SECRET)
+					.setSigningKey(DatatypeConverter.parseBase64Binary(SECRET))
 
 					.parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
 

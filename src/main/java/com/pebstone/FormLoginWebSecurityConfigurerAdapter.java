@@ -22,8 +22,7 @@ public class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurer
     
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()                
-                .antMatchers("/trace","/css/**").permitAll()                 
+            .authorizeRequests()                                                     
                 .anyRequest().authenticated()
                 .and()
             .formLogin()

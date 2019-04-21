@@ -17,7 +17,9 @@ public class JwtConfigurationAdapter extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable().authorizeRequests()                
+        http.csrf().disable().authorizeRequests()
+        		.antMatchers("/jwt").hasAuthority("USER")
+        		.antMatchers("/oauth2/redirect","/auth_code/**").permitAll()
                 .anyRequest().authenticated()
                 .and()               
                 .addFilter(new JwtAuthFilter(authenticationManager()));
