@@ -37,7 +37,6 @@ public class JwtAuthFilter extends BasicAuthenticationFilter {
 	}
 
 	@Override
-
 	protected void doFilterInternal(HttpServletRequest req,
 
 			HttpServletResponse res,
@@ -54,10 +53,8 @@ public class JwtAuthFilter extends BasicAuthenticationFilter {
 
 		}
 
-		UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
-
+		UsernamePasswordAuthenticationToken authentication = getAuthentication(req);				
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-
 		chain.doFilter(req, res);
 
 	}
@@ -82,13 +79,13 @@ public class JwtAuthFilter extends BasicAuthenticationFilter {
 						
 			String userName=jwt.getSubject();			
 			String role=jwt.getClaim(ROLE_STRING).asString();
-								
-
+											
 			if (userName != null) {
 				
 				 List<SimpleGrantedAuthority> auths = new java.util.ArrayList<SimpleGrantedAuthority>();
 			        auths.add(new SimpleGrantedAuthority(role));			        
-				return new UsernamePasswordAuthenticationToken(userName, null,auths);
+							        
+			        return new UsernamePasswordAuthenticationToken(userName, null,auths);
 
 			}
 

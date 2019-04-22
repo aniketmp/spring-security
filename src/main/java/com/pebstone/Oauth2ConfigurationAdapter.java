@@ -21,6 +21,7 @@ public class Oauth2ConfigurationAdapter extends ResourceServerConfigurerAdapter 
         .csrf().disable();
         }     
     
+    //This is also used to verify principal and extract grants
     /*@Bean
     public RemoteTokenServices LocalTokenService() {
         final RemoteTokenServices tokenService = new RemoteTokenServices();
