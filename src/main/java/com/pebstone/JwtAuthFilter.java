@@ -1,23 +1,24 @@
 package com.pebstone;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.oauth2.client.token.OAuth2AccessTokenSupport;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 
 public class JwtAuthFilter extends BasicAuthenticationFilter {
 
@@ -61,24 +62,27 @@ public class JwtAuthFilter extends BasicAuthenticationFilter {
 
 	}
 
-	private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
+	private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) throws IllegalArgumentException, UnsupportedEncodingException {
 
 		String token = request.getHeader(HEADER_STRING);
 		System.out.println("Received JWT Token:"+token);
+		Algorithm algorithm;
 		if (token != null) {
 
+		    
+		    algorithm = Algorithm.HMAC256(SECRET);
+            //JWTVerifier verifier = JWT.require(algorithm).withIssuer("prime").build(); //Reusable verifier instance
+            JWTVerifier verifier = JWT.require(algorithm).build(); //Reusable verifier instance
+            DecodedJWT jwt = verifier.verify(token.replace(TOKEN_PREFIX, ""));
+            
+            
+            
 			// parse the token.
 
-			Claims claims = Jwts.parser()
-
-					.setSigningKey(DatatypeConverter.parseBase64Binary(SECRET))
-
-					.parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
-
-					.getBody();
-			
-			String userName=claims.getSubject();
-			String role=(String) claims.getOrDefault(ROLE_STRING, "");//Setting appllication specific data					
+						
+			String userName=jwt.getSubject();			
+			String role=jwt.getClaim(ROLE_STRING).asString();
+								
 
 			if (userName != null) {
 				
